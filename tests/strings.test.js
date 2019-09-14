@@ -1,6 +1,6 @@
 describe('/strings', () => {
   describe('GET /hello/{string}', () => {
-    xit('returns "Hello world!" when passed "world"', (done) => {
+    it('returns "Hello world!" when passed "world"', (done) => {
       chai.request(server)
         .get('/strings/hello/world')
         .end((err, res) => {
@@ -9,11 +9,24 @@ describe('/strings', () => {
           expect(res.body).to.eql({ result: 'Hello world!' });
           done();
         });
+    });  
+  });
+
+  describe('GET /hello{string}', () => {
+    it('returns "Hello turtle!" when passed "turtle"', (done) => {
+      chai.request(server)
+        .get('/strings/hello/turtle')
+        .end((err, res) => {
+          expect(err).to.equal(null);
+          expect(res.status).to.equal(200);
+          expect(res.body).to.eql({ result: 'Hello turtle!' });
+          done();
+        });
     });
   });
 
   describe('GET /upper/{string}', () => {
-    xit('returns the uppercased string', (done) => {
+    it('returns the uppercased string', (done) => {
       chai.request(server)
         .get('/strings/upper/hello')
         .end((err, res) => {
@@ -26,7 +39,7 @@ describe('/strings', () => {
   });
 
   describe('GET /lower/{string}', () => {
-    xit('returns the lowercased string', (done) => {
+    it('returns the lowercased string', (done) => {
       chai.request(server)
         .get('/strings/lower/HELLO')
         .end((err, res) => {
@@ -39,7 +52,7 @@ describe('/strings', () => {
   });
 
   describe('GET /first-characters/{string}', () => {
-    xit('returns the first character of the string when there is no query string', (done) => {
+    it('returns the first character of the string when there is no query string', (done) => {
       chai.request(server)
         .get('/strings/first-characters/hello')
         .end((err, res) => {
@@ -50,7 +63,7 @@ describe('/strings', () => {
         });
     });
 
-    xit('returns the first n character of the string when passed a query parameter', (done) => {
+    it('returns the first n character of the string when passed a query parameter', (done) => {
       chai.request(server)
         .get('/strings/first-characters/sd32fg45')
         .query({ length: 4 })
