@@ -41,7 +41,7 @@ app.get('/numbers/add/:a/and/:b', (req, res) => {
   }
 });
 
-app.get('/numbers/subtract/{number}/from/{number}', (req, res) => {
+app.get('/numbers/subtract/:a/from/:b', (req, res) => {
   const isNumeric = (string) => {
     return !Number.isNaN(parseInt(string));
   };
@@ -49,10 +49,11 @@ app.get('/numbers/subtract/{number}/from/{number}', (req, res) => {
     const a = parseInt(req.params.a);
     const b = parseInt(req.params.b);
 
-    res.status(200).json({ result: add(a, b) });
+    res.status(200).json({ result: subtract(b, a) });
   } else {
     res.status(400).json({ error: 'Parameters must be valid numbers.' });
   }
 });
+
 
 module.exports = app;

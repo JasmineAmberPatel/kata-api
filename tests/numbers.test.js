@@ -46,7 +46,7 @@ describe('/numbers', () => {
   });
 
   describe('GET /subtract/{number}/from/{number}', () => {
-    xit('subtracts 2 from 1', (done) => {
+    it('subtracts 2 from 1', (done) => {
       chai.request(server)
         .get('/numbers/subtract/2/from/1')
         .end((err, res) => {
@@ -57,7 +57,7 @@ describe('/numbers', () => {
         });
     });
 
-    xit('subtracts -2 from 1', (done) => {
+    it('subtracts -2 from 1', (done) => {
       chai.request(server)
         .get('/numbers/subtract/-2/from/1')
         .end((err, res) => {
@@ -68,7 +68,7 @@ describe('/numbers', () => {
         });
     });
 
-    xit('errors if the parameters are not numbers', (done) => {
+    it('errors if the parameters are not numbers', (done) => {
       chai.request(server)
         .get('/numbers/subtract/fish/from/chips')
         .end((err, res) => {
