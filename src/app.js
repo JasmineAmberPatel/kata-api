@@ -1,13 +1,12 @@
 
 const express = require('express');
+const stringsRouter = require('./routes/strings');
 const { sayHello, uppercase, lowercase, firstCharacter, firstCharacters } = require('./lib/strings');
 const { add, subtract, multiply, divide, remainder } = require('./lib/numbers');
+
 const app = express();
 app.use(express.json());
-
-app.get('/strings/hello/:string', (req, res) => {
-  res.json({ result: sayHello(req.params.string) });
-});
+app.use('./strings', stringsRouter);
 
 app.get('/strings/upper/:string', (req, res) => {
   res.json({ result: uppercase(req.params.string) });
